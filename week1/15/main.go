@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type User struct {
 	Name string
 	Membership
@@ -28,14 +26,4 @@ func newUser(name string, membershipType string) User {
 	}
 
 	return user
-}
-
-func main() {
-	// Create a new user
-	user := newUser("Alice", "Premium")
-
-	// Print user details
-	fmt.Printf("User Name: %s\n", user.Name)
-	fmt.Printf("Membership Type: %s\n", user.Type)                     // Accessing embedded field directly
-	fmt.Printf("Message Character Limit: %d\n", user.MessageCharLimit) // Accessing embedded field directly
 }
