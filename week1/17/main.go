@@ -6,8 +6,7 @@ import (
 )
 
 func sendMessage(msg message) (string, int) {
-	length := 3 * len(msg.getMessage())
-	return msg.getMessage(), length
+	return msg.getMessage(), 3 * len(msg.getMessage())
 }
 
 type message interface {
