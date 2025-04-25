@@ -15,6 +15,7 @@ func getExpenseReport(e expense) (string, float64) {
 
 	// Usa un switch para determinar el tipo de expense
 	switch e := e.(type) {
+	// esta forma de usar
 	case email:
 		report = e.toAddress
 	case sms:
