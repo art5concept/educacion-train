@@ -4,6 +4,9 @@
 #define ID_BUTTON1 1
 #define ID_BUTTON2 2
 #define ID_EDIT    3
+#define ID_LABEL1  4
+#define ID_LABEL2  5
+#define ID_LABEL3  6
 
 // Declaraciones
 LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam);
@@ -46,28 +49,46 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 }
 
 // Variables globales para los controles
-HWND hButton1, hButton2, hEdit;
+HWND hButton1, hButton2, hEdit, hLabel1, hLabel2, hLabel3;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) {
     switch(Message) {
         
         case WM_CREATE:
+        	// Crear etiqueta de texto
+        	hLabel1 = CreateWindowEx(0,"STATIC", "Almacen El Fuerte.",
+									WS_CHILD | WS_VISIBLE | SS_CENTER,
+									50,10,300,20,
+									hwnd, (HMENU)ID_LABEL1,NULL,NULL);
+			
+			// Crear etiqueta de texto
+        	hLabel2 = CreateWindowEx(0,"STATIC", "Telefono 774-3923.",
+									WS_CHILD | WS_VISIBLE | SS_CENTER,
+									50,35,300,20,
+									hwnd, (HMENU)ID_LABEL2,NULL,NULL);
+			
+			// Crear etiqueta de texto
+        	hLabel3 = CreateWindowEx(0,"STATIC", "Avenida del Sol 456, Colonia Jardines.",
+									WS_CHILD | WS_VISIBLE | SS_CENTER,
+									50,60,300,20,
+									hwnd, (HMENU)ID_LABEL3,NULL,NULL);
+									
             // Crear cuadro de texto
             hEdit = CreateWindowEx(0, "EDIT", "",
                                    WS_CHILD | WS_VISIBLE | WS_BORDER,
-                                   50, 50, 300, 25,
+                                   50, 90, 300, 25,
                                    hwnd, (HMENU)ID_EDIT, NULL, NULL);
             
             // Crear botón 1
             hButton1 = CreateWindowEx(0, "BUTTON", "Mostrar Hola",
                                       WS_CHILD | WS_VISIBLE,
-                                      50, 100, 120, 30,
+                                      50, 130, 120, 30,
                                       hwnd, (HMENU)ID_BUTTON1, NULL, NULL);
             
             // Crear botón 2
             hButton2 = CreateWindowEx(0, "BUTTON", "Mostrar Adiós",
                                       WS_CHILD | WS_VISIBLE,
-                                      200, 100, 120, 30,
+                                      200, 130, 120, 30,
                                       hwnd, (HMENU)ID_BUTTON2, NULL, NULL);
             break;
         
