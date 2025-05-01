@@ -1,4 +1,8 @@
 #include <windows.h>
+#include <sstream>
+#include <string>
+
+using namespace std;
 
 // Identificadores únicos para los botones y el cuadro de texto
 #define ID_BUTTON1 1
@@ -80,13 +84,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) 
                                    hwnd, (HMENU)ID_EDIT, NULL, NULL);
             
             // Crear botón 1
-            hButton1 = CreateWindowEx(0, "BUTTON", "Mostrar Hola",
+            hButton1 = CreateWindowEx(0, "BUTTON", "Calcular Aumento",
                                       WS_CHILD | WS_VISIBLE,
                                       50, 130, 120, 30,
                                       hwnd, (HMENU)ID_BUTTON1, NULL, NULL);
             
             // Crear botón 2
-            hButton2 = CreateWindowEx(0, "BUTTON", "Mostrar Adiós",
+            hButton2 = CreateWindowEx(0, "BUTTON", "Limpiar",
                                       WS_CHILD | WS_VISIBLE,
                                       200, 130, 120, 30,
                                       hwnd, (HMENU)ID_BUTTON2, NULL, NULL);
@@ -96,10 +100,46 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) 
             // Identificar qué botón se presionó
             switch(LOWORD(wParam)) {
                 case ID_BUTTON1:
-                    SetWindowText(hEdit, "Hola Mundo!");
+                	{
+                		
+					
+                	char buffer[100];
+                	GetWindowText(hEdit, buffer, 100);
+                	double salario = atof(buffer);
+                	double aumento = 0.0;
+                	double por_aumento;
+					double total = 0.0;
+					
+					if (salario <= 0) {
+						    MessageBox(hwnd, "Por favor ingrese un salario válido.", "Error", MB_OK | MB_ICONWARNING);
+						    break;
+						}
+
+                	
+                	if (salario<= 500.00){
+                		por_aumento=0.20;
+					}else if (salario<=1000.00){
+						por_aumento=0.10;
+					}else if (salario<=2000.00){
+						por_aumento=0.05;
+					}else {
+						por_aumento=0.03;
+					}
+				
+					aumento=por_aumento*salario;
+					total= salario+ aumento;
+					
+					stringstream ss;
+					ss.precision(2);
+					ss<<fixed;
+					ss<< "Aumento: $"<< aumento <<"  | Total: $"<<total;
+					
+                    SetWindowText(hEdit, ss.str().c_str());
                     break;
+                }
+                
                 case ID_BUTTON2:
-                    SetWindowText(hEdit, "Adiós Mundo!");
+                    SetWindowText(hEdit, "");
                     break;
             }
             break;
