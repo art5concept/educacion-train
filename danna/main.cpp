@@ -52,8 +52,30 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     return msg.wParam;
 }
 
+
+
 // Variables globales para los controles
 HWND hButton1, hButton2, hEdit, hLabel1, hLabel2, hLabel3;
+
+void CenterControls(HWND hwnd) {
+    RECT rect;
+    GetClientRect(hwnd, &rect);
+    int width = rect.right - rect.left;
+    int height = rect.bottom - rect.top;
+
+    int totalHeight = 6 * 30 + 10; // total vertical space needed
+    int startY = (height - totalHeight) / 2;
+
+    int centerX = width / 2;
+
+    SetWindowPos(hLabel1, NULL, centerX - 150, startY, 300, 20, SWP_NOZORDER);
+    SetWindowPos(hLabel2, NULL, centerX - 150, startY + 25, 300, 20, SWP_NOZORDER);
+    SetWindowPos(hLabel3, NULL, centerX - 150, startY + 50, 300, 20, SWP_NOZORDER);
+    SetWindowPos(hEdit,   NULL, centerX - 150, startY + 80, 300, 25, SWP_NOZORDER);
+    SetWindowPos(hButton1,NULL, centerX - 150, startY + 120, 120, 30, SWP_NOZORDER);
+    SetWindowPos(hButton2,NULL, centerX + 30,  startY + 120, 120, 30, SWP_NOZORDER);
+}
+
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) {
     switch(Message) {
@@ -143,6 +165,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) 
                     break;
             }
             break;
+            
+        case WM_SIZE:
+		    CenterControls(hwnd);
+		    break;
+
         
         case WM_DESTROY:
             PostQuitMessage(0);
