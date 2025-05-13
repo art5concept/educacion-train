@@ -5,10 +5,10 @@
 
 // Constantes para detección
 const float MIN_DIST = 2.0;          // Distancia mínima de activación
-const float MAX_DIST = 15.0;         // Distancia máxima de activación - CRÍTICA
-const float SAFETY_MARGIN = 0.6;     // Margen de seguridad adicional (14.4 cm es el nuevo límite real)
-const float DIFFUSE_ZONE_START = 14.6; // Inicio de zona difusa
-const float DIFFUSE_ZONE_END = 17.0;   // Fin de zona difusa
+const float MAX_DIST = 20.0;         // Distancia máxima de activación - CRÍTICA
+const float SAFETY_MARGIN = 1.5;     // Margen de seguridad adicional (14.4 cm es el nuevo límite real)
+const float DIFFUSE_ZONE_START = 18.6; // Inicio de zona difusa
+const float DIFFUSE_ZONE_END = 22.0;   // Fin de zona difusa
 
 // Variables para control de tiempo
 unsigned long previousReadMillis = 0;
