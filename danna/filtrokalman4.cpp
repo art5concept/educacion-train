@@ -100,6 +100,9 @@ void loop() {
     estimationHistory[historyIndex] = estimate;
     historyIndex = (historyIndex + 1) % HISTORY_SIZE;
     
+    
+    
+    
     // Calcular variación histórica (optimizada para enteros)
     uint8_t variation = calculate_history_variation();
 
@@ -207,6 +210,7 @@ uint8_t read_distance(uint8_t trigPin, uint8_t echoPin) {
     return MAX_DIST + 1;  // Fuera de rango
   }
   
+ 
   // Restricción a rango útil
   if (d < MIN_DIST) return MIN_DIST;
   if (d > MAX_DIST) return MAX_DIST;
@@ -258,6 +262,8 @@ uint8_t update_kalman(uint8_t z1, uint8_t z2) {
       if (kalman_r2_x10 > 1) kalman_r2_x10--;
     }
   }
+  
+  
   
   // — Restricción del estado estimado —
   if (kalman_x < MIN_DIST) kalman_x = MIN_DIST;

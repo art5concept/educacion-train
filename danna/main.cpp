@@ -1,3 +1,9 @@
+// Este es un programa de ejemplo en C++ que crea una ventana GUI simple
+// utilizando la API de Windows. El programa muestra un cuadro de texto para ingresar un salario,
+// dos botones para calcular un aumento y limpiar el cuadro de texto, y etiquetas para mostrar información.
+// El aumento se calcula según las reglas especificadas y se muestra en el cuadro de texto.
+// Este código es un ejemplo básico de cómo crear una GUI en C++ utilizando la API de Windows.
+
 #include <windows.h>
 #include <sstream>
 #include <string>
